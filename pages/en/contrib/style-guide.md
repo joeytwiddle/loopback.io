@@ -451,18 +451,7 @@ async function getDodo() {
 
 ### When returning a promise, do not await it
 
-If the last line of a function returns a value in a promise, then return it directly, do not `await` it.
-
-Pros:
-
-- This has better performance
-- It uses less code
-
-Cons:
-
-- It is less consistent (all promises in the function are awaited except this last one).
-- If we put a try-catch around the entire function body, it will not catch rejections from that last unawaited promise; they will be passed back to the caller instead.
-- It is ambiguous for historical reasons. ("Was this really intending to return a value, or is this code just using the old way of returning promises?")
+If the last line of a function returns a value in a promise, then return it directly, do not `await` it. (This is more efficient as it avoid constructing an extra promise.)
 
 **Bad**:
 
